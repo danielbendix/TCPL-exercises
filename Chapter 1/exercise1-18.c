@@ -3,23 +3,20 @@
 
 int getln(char line[], int maxline);
 void copy(char to[], char from[]);
+void removeblanks(char s[]);
 
 /* print longest input line */
 main()
 {
 	int len;
-	int max;
 	char line[MAXLINE];
-	char longest[MAXLINE];
-	
-	max = 0;
+
 	while ((len = getln(line, MAXLINE)) > 0)
-		if (len > max) {
-			max = len;
-			copy(longest, line);
+		if (len > 0) {
+			removeblanks(line);
+			printf("%s", line);
 		}
-	if (max > 0)	/* there was a line */
-		printf("%s", longest);
+		
 	return 0;
 }
 
@@ -48,4 +45,37 @@ void copy(char to[], char from[])
 	i = 0;
 	while ((to[i] = from[i]) != '\0')
 		++i;
+}
+
+/* removeblanks:  reduce multiple tabs and spaces to one space */
+void removeblanks(char s[])
+{
+	int i, space, ublanks;
+	space = ublanks = 0;
+	
+	for (i = 0; s[i] != '\0'; ++i)
+	{
+		if (s[i] == ' ' || s[i] == '\t')
+		{
+			if (space)
+			{
+				++ublanks;
+			}
+			else
+			{
+				space = 1;
+				s[i - ublanks] = ' ';
+			}
+		}
+		else
+		{
+			space = 0;
+			s[i - ublanks] = s[i];
+		}
+	}
+	
+	if (i == ublanks + 2)
+		s[0] = '\0';
+	else
+		s[i - ublanks] = '\0';
 }
