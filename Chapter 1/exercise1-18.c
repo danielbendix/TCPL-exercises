@@ -53,12 +53,10 @@ void removeblanks(char s[])
 	int i, space, ublanks;
 	space = ublanks = 0;
 	
-	for (i = 0; s[i] != '\0'; ++i)
-	{
-		if (s[i] == ' ' || s[i] == '\t')
-		{
-			if (space)
-			{
+	for (i = 0; s[i] != '\0'; ++i) {
+		
+		if (s[i] == ' ' || s[i] == '\t') {
+			if (space) {
 				++ublanks;
 			}
 			else

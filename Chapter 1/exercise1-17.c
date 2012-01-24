@@ -48,16 +48,3 @@ void copy(char to[], char from[])
 	while ((to[i] = from[i]) != '\0')
 		++i;
 }
-
-void delblanks(char s[])
-{
-	int white, blanks, i;
-	white = 0;
-	blanks = 0;
-	
-	for (i = 0; s[i] != '\0'; ++i)
-	{
-		
-	}
-	
-}
